@@ -27,8 +27,9 @@
   ],
   "license": "MIT",
   "scripts": {
+    "develop": "DEPLOY_ENV=lbn_published_production gatsby develop",
+    "dev": "npm run develop",
     "build": "gatsby build",
-    "develop": "gatsby develop",
     "start": "npm run develop",
     "serve": "gatsby serve",
     "test": "echo \"Write tests! -> https://gatsby.app/unit-testing\""
