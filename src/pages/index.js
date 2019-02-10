@@ -23,7 +23,7 @@ const IndexPage = ({ data }) => {
           <h5>{art.year}</h5>
           <h3>{art.title}</h3>
           <h4>{art.subtitle}</h4>
-          <p dangerouslySetInnerHTML={{ __html: art.description }} />
+          <div dangerouslySetInnerHTML={{ __html: art.description }} />
           <img src={art.images[0].image.sizes.large} />
         </div>
       ))}
