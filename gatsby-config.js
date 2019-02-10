@@ -1,18 +1,12 @@
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Default Starter`,
+    title: `Marakuya Default Starter`,
     description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
-    author: `@gatsbyjs`
+    author: `@marakuya`
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
-    {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        name: `images`,
-        path: `${__dirname}/src/images`
-      }
-    },
+    // https://github.com/gatsbyjs/gatsby/tree/master/packages/gatsby-source-wordpress#how-to-use
     {
       resolve: `gatsby-source-wordpress`,
       options: {
@@ -22,7 +16,17 @@ module.exports = {
         // is it hosted on wordpress.com, or self-hosted?
         hostingWPCOM: false,
         // does your site use the Advanced Custom Fields Plugin?
-        useACF: true
+        useACF: true,
+        concurrentRequests: 10,
+        includedRoutes: ["**/*/*/pages"]
+        // excludedRoutes: ["/wp-json/wp/v2/users/**", " /wp-json/wp/v2/users/me?per_page=100&page=1", "/wp-json/wp/v2/settings/**"]
+      }
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `images`,
+        path: `${__dirname}/src/images`
       }
     },
     `gatsby-transformer-sharp`,
