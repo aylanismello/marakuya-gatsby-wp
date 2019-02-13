@@ -9,8 +9,32 @@ const ArtPieceStyle = styled.div`
   }
 `;
 
+const LoadButton = styled.div`
+  display: ${props => (props.hasMorePieces ? 'flex' : 'none')};
+  padding: 1rem;
+  justify-content: center;
+  font-size: 2rem;
+  line-height: 1.1;
+  
+  
+  .text-container {
+    border-bottom: 1px solid;
+    width: 10rem;  
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  p {
+    margin-bottom: 0.3em;
+    text-align: center;
+  }
+`;
+
+const PAGINATION_SIZE = 3;
+
 const ArtPiece = ({
- year, title, subtitle, description, images
+ year, title, subtitle, description, images 
 }) => (
   <ArtPieceStyle>
     <div className="piece-writing">
@@ -47,19 +71,36 @@ const ArtPiece = ({
   </ArtPieceStyle>
 );
 
-const IndexPage = ({ data }) => {
-  const { node } = data.allWordpressPage.edges[0];
-  const { title, slug } = node;
-  const { art_list } = node.acf;
+class IndexPage extends React.Component {
+  state = {
+    listSize: PAGINATION_SIZE
+  };
 
-  return (
-    <Layout>
-      {art_list.map(art => (
-        <ArtPiece {...art} />
-      ))}
-    </Layout>
-  );
-};
+  render() {
+    const { data } = this.props;
+    const { node } = data.allWordpressPage.edges[0];
+    const { title, slug } = node;
+    const { art_list } = node.acf;
+    const hasMorePieces = art_list.length > this.state.listSize;
+
+    return (
+      <Layout>
+        {art_list.slice(0, this.state.listSize).map(art => (
+          <ArtPiece {...art} />
+        ))}
+        <LoadButton
+          hasMorePieces={hasMorePieces}
+          onClick={() => this.setState({ listSize: this.state.listSize + PAGINATION_SIZE })
+          }
+        >
+          <div className="text-container">
+            <p>Load More</p>
+          </div>
+        </LoadButton>
+      </Layout>
+    );
+  }
+}
 
 export default IndexPage;
 

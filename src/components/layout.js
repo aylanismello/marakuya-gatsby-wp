@@ -10,6 +10,11 @@ const GlobalStyle = createGlobalStyle`
   html {
     font-size: 10px;
   }
+
+  a {
+    text-decoration: none;
+    color: #4a4a4a;
+  }
 `;
 
 const Wrapper = styled.div`

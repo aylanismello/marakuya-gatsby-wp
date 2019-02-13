@@ -3,11 +3,13 @@ import styled from 'styled-components';
 import NavLinks from './nav_links';
 
 const Wrapper = styled.nav`
-  /* padding: 1.2rem; */
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
 `;
 
 const SiteName = styled.div`
-  float: left;
+
   h1 {
     font-size: 1.6rem;
     line-height: 1.17;
