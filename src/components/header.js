@@ -29,13 +29,13 @@ const SiteName = styled.div`
   }
 `;
 
-const Header = () => (
+const Header = ({ pathname }) => (
   <Wrapper>
     <SiteName>
       <h1>Min Bark</h1>
       <span>Artist</span>
     </SiteName>
-    <NavLinks style={{ float: 'right' }} header />
+    <NavLinks style={{ float: 'right' }} header pathname={pathname} />
   </Wrapper>
 );
 

@@ -59,16 +59,16 @@ const Content = styled.div`
     padding: 10rem 15rem 10rem 15rem;
   }
 `;
-const Layout = ({ children }) => {
+const Layout = ({ children, location }) => {
   return (
     <Wrapper>
       <Normalize />
       <GlobalStyle />
       <Container>
-        <Header />
+        <Header pathname={location.pathname} />
         <Content>{children}</Content>
       </Container>
-      <Footer />
+      <Footer pathname={location.pathname} />
     </Wrapper>
   );
 };

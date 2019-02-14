@@ -23,6 +23,10 @@ const FooterNotes = styled.section`
     font-size: 1.4rem;
     padding: 1rem 0;
   }
+
+  a {
+    text-decoration: underline;
+  }
 `;
 
 const Copyright = styled.section`
@@ -30,15 +34,15 @@ const Copyright = styled.section`
   line-height: 1.57;
 `;
 
-const Footer = () => (
+const Footer = ({ pathname }) => (
   <Wrapper>
-    <NavLinks />
+    <NavLinks pathname={pathname} />
     <FooterNotes>
       <div className="footer-note">
         This online portfolio contains only a small sample of current work.
       </div>
       <div className="footer-note">
-        More are available <a href="mailto: mail@minbark.com">by request </a>
+        More are available <a href="mailto: mail@minbark.com">by request.</a>
       </div>
     </FooterNotes>
     <Copyright>
