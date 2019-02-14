@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'gatsby';
 import styled from 'styled-components';
 import NavLinks from './nav_links';
 
@@ -32,7 +33,9 @@ const SiteName = styled.div`
 const Header = ({ pathname }) => (
   <Wrapper>
     <SiteName>
-      <h1>Min Bark</h1>
+      <Link to="/">
+        <h1>Min Bark</h1>
+      </Link>
       <span>Artist</span>
     </SiteName>
     <NavLinks style={{ float: 'right' }} header pathname={pathname} />

@@ -41,7 +41,7 @@ const CustomLinkWrapper = styled.div`
 
 const CustomLink = props => {
   const { pathname, to, children, href } = props;
-  const isActive = pathname === to;
+  const isActive = pathname === to || pathname === `${to}/`;
 
   return (
     <CustomLinkWrapper isActive={isActive}>
