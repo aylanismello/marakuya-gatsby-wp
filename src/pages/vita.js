@@ -3,28 +3,70 @@ import { graphql } from 'gatsby';
 import styled from 'styled-components';
 import Layout from '../components/layout';
 
-  const VitaSectionWrapper = styled.section`
-  `;
-  const VitaItemWrapper = styled.section`
-  `;
+const COLUMN_DIVIDER = 4;
+
+const VitaSectionContainer = styled.section`
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-row-gap: 2rem;
+  .vita-section-header {
+    grid-column: ${COLUMN_DIVIDER} / -1;
+  }
+
+`;
+const VitaItemWrapper = styled.section`
+  display: grid;
+  grid-column: 1 / -1;
+  grid-template-columns: repeat(12, 1fr);
+  line-height: 1.57;
+  /* grid-column-gap: 20px; */
+
+
+  .left-side {
+    grid-column: 1 / ${COLUMN_DIVIDER};
+    max-width: 100px;
+    text-align: right; 
+    font-size: 1.4rem;
+    font-weight: bold;
+    margin-right: 1.5rem;
+  }
+
+  .right-side {
+    grid-column: ${COLUMN_DIVIDER} / -1;
+    .vita-subtitle {
+      color: #a7a7a7;
+      font-style: italic;
+    }
+  }
+`;
+
+const VitaList = styled.div`
+  display: grid;
+  grid-row-gap: 9rem;
+`;
 
 const VitaItem = ({ vitaItem }) => (
   <VitaItemWrapper>
-    {vitaItem.year}
-    {vitaItem.title}
-    {vitaItem.subtitle}
+    <div className="left-side">{vitaItem.year}</div>
+    <div className="right-side">
+      <div className="vita-title">
+      {vitaItem.title}
+      </div>
+      <div className="vita-subtitle">
+      {vitaItem.subtitle}
+      </div>
+    </div>
   </VitaItemWrapper>
 );
 
-
 const VitaSection = ({ vitaType, vitaItems }) => {
   return (
-    <VitaSectionWrapper>
-      <h1>
-        {vitaType}
-      </h1>
-      {vitaItems.map(vitaItem => <VitaItem vitaItem={vitaItem} />)}
-    </VitaSectionWrapper>
+    <VitaSectionContainer>
+      <h1 className="vita-section-header">{vitaType}</h1>
+      {vitaItems.map(vitaItem => (
+        <VitaItem vitaItem={vitaItem} />
+      ))}
+    </VitaSectionContainer>
   );
 };
 
@@ -50,9 +92,11 @@ class VitaPage extends React.Component {
 
     return (
       <Layout location={location}>
+        <VitaList>
         {Object.keys(vita).map(vitaType => {
           return <VitaSection vitaType={vitaType} vitaItems={vita[vitaType]} />;
         })}
+        </VitaList>
       </Layout>
     );
   }

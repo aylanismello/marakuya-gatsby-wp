@@ -19,6 +19,9 @@ const ArtPieceHeader = styled.div`
   display: ${props => (props.title ? 'block' : 'none')};
 `;
 
+// ? USE GRID!
+// https://medium.freecodecamp.org/learn-css-grid-in-5-minutes-f582e87b1228
+
 const ArtPiece = ({
  year, title, subtitle, description, images 
 }) => (
