@@ -1,6 +1,7 @@
 import React from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
 import { Normalize } from 'styled-normalize';
+import Unmodal from './unmodal';
 import Header from './header';
 import Footer from './footer';
 
@@ -8,6 +9,9 @@ import Footer from './footer';
 // hard resets are done here
 const GlobalStyle = createGlobalStyle`
   html {
+    font-family: "Asap";
+    color: #4a4a4a;
+    background: #f8f8f8;
     font-size: 10px;
   }
 
@@ -18,18 +22,18 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 const Wrapper = styled.div`
-  font-family: "Asap";
+  /* font-family: "Asap"; */
   padding: 1rem;
-  background: #f8f8f8;
-  color: #4a4a4a;
-  
+  /* background: #f8f8f8; */
+  /* color: #4a4a4a; */
+
   @media (min-width: 768px) {
     padding: 2rem;
   }
   @media (min-width: 1440px) {
     padding: 4rem;
   }
-  `;
+`;
 
 const Container = styled.div`
   background: #ffffff;
@@ -48,7 +52,6 @@ const Content = styled.div`
   line-height: 2.2rem;
   margin: 0px auto;
 
-
   @media (min-width: 768px) {
     padding: 5.4rem;
     max-width: 580px;
@@ -59,18 +62,38 @@ const Content = styled.div`
     padding: 10rem 15rem 10rem 15rem;
   }
 `;
-const Layout = ({ children, location }) => {
-  return (
-    <Wrapper>
-      <Normalize />
-      <GlobalStyle />
-      <Container>
-        <Header pathname={location.pathname} />
-        <Content>{children}</Content>
-      </Container>
-      <Footer pathname={location.pathname} />
-    </Wrapper>
-  );
-};
+class Layout extends React.Component {
+  state = {
+    modalOpen: false
+  };
 
+  render() {
+    const { modalOpen } = this.state;
+    const { children, location } = this.props;
+    const { pathname } = location;
+    return (
+      <div className="layout">
+        <Normalize />
+        <GlobalStyle />
+        {modalOpen ? (
+          <Unmodal
+            modalOpen={modalOpen}
+            toggleModal={() => this.setState({ modalOpen: !modalOpen })}
+          />
+        ) : (
+          <Wrapper>
+            <Container>
+              <Header
+                pathname={pathname}
+                toggleModal={() => this.setState({ modalOpen: !modalOpen })}
+              />
+              <Content>{children}</Content>
+            </Container>
+            <Footer pathname={pathname} />
+          </Wrapper>
+        )}
+      </div>
+    );
+  }
+}
 export default Layout;

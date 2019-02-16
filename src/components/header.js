@@ -1,7 +1,9 @@
 import React from 'react';
 import { Link } from 'gatsby';
 import styled from 'styled-components';
+import MediaQuery from 'react-responsive';
 import NavLinks from './nav_links';
+import Burger from './burger';
 
 const Wrapper = styled.nav`
   display: flex;
@@ -30,7 +32,7 @@ const SiteName = styled.div`
   }
 `;
 
-const Header = ({ pathname }) => (
+const Header = ({ pathname, toggleModal }) => (
   <Wrapper>
     <SiteName>
       <Link to="/">
@@ -38,7 +40,12 @@ const Header = ({ pathname }) => (
       </Link>
       <div className="site-name-subheader">Artist</div>
     </SiteName>
-    <NavLinks style={{ float: 'right' }} header pathname={pathname} />
+    <MediaQuery minWidth={768}>
+      <NavLinks style={{ float: 'right' }} linksLocation="header" pathname={pathname} />
+    </MediaQuery>
+    <MediaQuery maxWidth={767}>
+      <Burger toggleModal={toggleModal} />
+    </MediaQuery>
   </Wrapper>
 );
 
