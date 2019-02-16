@@ -79,6 +79,7 @@ class Layout extends React.Component {
           <Unmodal
             modalOpen={modalOpen}
             toggleModal={() => this.setState({ modalOpen: !modalOpen })}
+            pathname={pathname}
           />
         ) : (
           <Wrapper>

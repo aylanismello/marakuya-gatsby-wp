@@ -22,13 +22,13 @@ const CloseBtn = styled.div`
   }
 `;
 
-const Unmodal = ({ toggleModal }) => {
+const Unmodal = ({ toggleModal, pathname }) => {
   return (
     <UnmodalWrapper className="unmodal">
       <CloseBtn onClick={toggleModal}>
         <img src={x} />
       </CloseBtn>
-      <NavLinks linksLocation="menu" />
+      <NavLinks linksLocation="menu" pathname={pathname} />
     </UnmodalWrapper>
   );
 };
