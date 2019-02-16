@@ -10,8 +10,8 @@ const Wrapper = styled.nav`
 `;
 
 const SiteName = styled.div`
-
-  h1 {
+  .site-name-header {
+    font-weight: bold;
     font-size: 1.6rem;
     line-height: 1.17;
     @media (min-width: 768px) {
@@ -19,7 +19,7 @@ const SiteName = styled.div`
       line-height: 1.2;
     }
   }
-  span {
+  .site-name-subheader {
     font-size: 1.4rem;
     line-height: 1.14;
 
@@ -34,9 +34,9 @@ const Header = ({ pathname }) => (
   <Wrapper>
     <SiteName>
       <Link to="/">
-        <h1>Min Bark</h1>
+        <div className="site-name-header">Min Bark</div>
       </Link>
-      <span>Artist</span>
+      <div className="site-name-subheader">Artist</div>
     </SiteName>
     <NavLinks style={{ float: 'right' }} header pathname={pathname} />
   </Wrapper>
