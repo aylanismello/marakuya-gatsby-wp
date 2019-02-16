@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import Lightbox from 'react-images';
-import 'react-image-lightbox/style.css';
 
 const ArtPieceStyle = styled.div`
   /* display: grid; */
