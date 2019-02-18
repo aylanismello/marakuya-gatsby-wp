@@ -8,7 +8,7 @@ import Burger from './burger';
 const Wrapper = styled.nav`
   display: flex;
   justify-content: space-between;
-  align-items: baseline;
+  align-items: center;
 `;
 
 const SiteName = styled.div`

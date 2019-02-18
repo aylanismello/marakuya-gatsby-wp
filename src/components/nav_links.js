@@ -5,7 +5,9 @@ import { Link } from 'gatsby';
 const NavLinksWrapper = styled.section`
   display: flex;
   flex-direction: ${props => (props.linksLocation === 'header' ? 'row' : 'column')};
-  width: ${props => (props.linksLocation === 'header' ? '' : '4rem')};
+  width: ${props => (props.linksLocation === 'footer' ? '4rem' : '')};
+  align-items: ${props => (props.linksLocation === 'menu' ? 'center' : '')};
+
 
   position: ${props => (props.linksLocation === 'menu' ? 'absolute' : '')};
   top: ${props => (props.linksLocation === 'menu' ? '20%' : '')};
@@ -14,7 +16,6 @@ const NavLinksWrapper = styled.section`
     padding: ${props => (props.linksLocation === 'header' ? '0 1rem' : '1rem 0')};
   }
 `;
-
 
 // TODO: dry this up. but how
 const CustomLinkContent = styled(Link)`
@@ -48,11 +49,19 @@ const CustomLink = props => {
   return (
     <CustomLinkWrapper linksLocation={linksLocation} isActive={isActive}>
       {href ? (
-        <CustomAnchorContent linksLocation={linksLocation} isActive={isActive} href={href}>
+        <CustomAnchorContent
+          linksLocation={linksLocation}
+          isActive={isActive}
+          href={href}
+        >
           {children}
         </CustomAnchorContent>
       ) : (
-        <CustomLinkContent linksLocation={linksLocation} isActive={isActive} to={to}>
+        <CustomLinkContent
+          linksLocation={linksLocation}
+          isActive={isActive}
+          to={to}
+        >
           {children}
         </CustomLinkContent>
       )}
@@ -71,7 +80,11 @@ const NavLinks = ({ linksLocation, pathname }) => (
     <CustomLink linksLocation={linksLocation} pathname={pathname} to="/vita">
       Vita
     </CustomLink>
-    <CustomLink linksLocation={linksLocation} pathname={pathname} href="mailto: mail@minbark.com">
+    <CustomLink
+      linksLocation={linksLocation}
+      pathname={pathname}
+      href="mailto: mail@minbark.com"
+    >
       Contact
     </CustomLink>
   </NavLinksWrapper>

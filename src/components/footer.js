@@ -36,7 +36,7 @@ const Copyright = styled.section`
 
 const Footer = ({ pathname }) => (
   <Wrapper>
-    <NavLinks pathname={pathname} />
+    <NavLinks linksLocation="footer" pathname={pathname} />
     <FooterNotes>
       <div className="footer-note">
         This online portfolio contains only a small sample of current work.
