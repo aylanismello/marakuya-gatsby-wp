@@ -3,6 +3,26 @@ import styled from 'styled-components';
 import Lightbox from 'react-images';
 
 const ArtPieceStyle = styled.div`
+  @media(min-width: 1000px) {
+    /* display: grid;
+    grid-template: 1fr / 1fr 2fr; */
+    /* grid-template-columns: 2fr auto;
+    grid-template-rows: 1fr; */
+    .piece-writing {
+      /* display: grid; */
+      /* grid-template-columns: 1fr; */
+      /* grid-template-rows: 1fr 2fr; */
+      /* display: grid; */
+      /* grid-template: 20rem 2fr / 1fr; */
+    }
+
+    .piece-image {
+      /* display: grid; */
+      /* grid-template-columns: 1fr; */
+      /* grid-template-rows: 1fr 2fr; */
+    }
+    
+  }
   /* display: grid; */
   /* grid-template-columns: repeat(12, 1fr);
 
@@ -34,6 +54,7 @@ const Year = styled.h5`
   margin: 0px;
   line-height: 1.71;
   font-size: 1.4rem;
+  font-weight: normal;
 `;
 
 const ArtPieceHeader = styled.div`
@@ -68,10 +89,11 @@ class ArtPiece extends React.Component {
             <Year>{year}</Year>
 
             <ArtPieceHeader title={title}>
-              <h3 style={{ fontSize: '2.4rem', lineHeight: '1.25' }}>
+              <h3 className="piece-title" style={{ fontSize: '2.4rem', lineHeight: '1.25' }}>
                 {title}
               </h3>
               <h4
+                className="piece-subtitle"
                 style={{
                   color: '#a7a7a7',
                   fontWeight: 'normal',
@@ -87,11 +109,13 @@ class ArtPiece extends React.Component {
           </div>
         </div>
         <div className="piece-image">
+          <div></div> 
           <img
             style={{
               width: '100%',
               height: 'auto'
             }}
+            className="piece-image-src"
             src={images[0].image.sizes.large}
             onClick={() => this.setState({ isOpen: true })}
           />

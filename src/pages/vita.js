@@ -24,6 +24,10 @@ const VitaItemWrapper = styled.section`
 
   .left-side {
     grid-column: 1 / ${COLUMN_DIVIDER};
+
+    @media (min-width: 1440px) {
+      grid-column: 2 / ${COLUMN_DIVIDER};
+    }
     max-width: 100px;
     text-align: right; 
     font-size: 1.4rem;

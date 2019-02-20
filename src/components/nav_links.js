@@ -8,20 +8,16 @@ const NavLinksWrapper = styled.section`
   width: ${props => (props.linksLocation === 'footer' ? '4rem' : '')};
   align-items: ${props => (props.linksLocation === 'menu' ? 'center' : '')};
 
-
   position: ${props => (props.linksLocation === 'menu' ? 'absolute' : '')};
   top: ${props => (props.linksLocation === 'menu' ? '20%' : '')};
-  a {
-    display: block;
-    padding: ${props => (props.linksLocation === 'header' ? '0 1rem' : '1rem 0')};
-  }
 `;
 
 // TODO: dry this up. but how
+// TODO: add more margin to border bottom
 const CustomLinkContent = styled(Link)`
-  margin-bottom: ${props => (props.isActive ? '0.5rem' : '')};
+  /* margin-bottom: ${props => (props.isActive && props.linksLocation !== 'footer' ? '0.5rem' : '')}; */
   font-size: ${props => (props.linksLocation === 'menu' ? '2.4rem' : '1.4rem')};
-  text-decoration: none;
+  border-bottom: ${props => (props.isActive ? '1px solid' : '')};
 
   &:hover {
     color: #a7a7a7;
@@ -31,7 +27,6 @@ const CustomLinkContent = styled(Link)`
 const CustomAnchorContent = styled.a`
   margin-bottom: ${props => (props.isActive ? '0.5rem' : '')};
   font-size: ${props => (props.linksLocation === 'menu' ? '2.4rem' : '1.4rem')};
-  text-decoration: none;
 
   &:hover {
     color: #a7a7a7;
@@ -39,7 +34,10 @@ const CustomAnchorContent = styled.a`
 `;
 
 const CustomLinkWrapper = styled.div`
-  border-bottom: ${props => (props.isActive ? '1px solid' : '')};
+  padding: ${props => (props.linksLocation === 'header' ? '0 1rem' : '0.6rem 0')};
+  @media (max-width: 767px) {
+    padding: ${props => (props.linksLocation === 'menu' ? '1.2em 0' : '0.6rem 0')};
+  }
 `;
 
 const CustomLink = props => {
@@ -47,7 +45,11 @@ const CustomLink = props => {
   const isActive = pathname === to || pathname === `${to}/`;
 
   return (
-    <CustomLinkWrapper linksLocation={linksLocation} isActive={isActive}>
+    <CustomLinkWrapper
+      linksLocation={linksLocation}
+      isActive={isActive}
+      className="custom-link"
+    >
       {href ? (
         <CustomAnchorContent
           linksLocation={linksLocation}
@@ -84,6 +86,7 @@ const NavLinks = ({ linksLocation, pathname }) => (
       linksLocation={linksLocation}
       pathname={pathname}
       href="mailto: mail@minbark.com"
+      className="custom-link"
     >
       Contact
     </CustomLink>
