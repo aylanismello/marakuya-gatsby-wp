@@ -1,46 +1,52 @@
 import React from 'react';
 import styled from 'styled-components';
+import MediaQuery from 'react-responsive';
 import Lightbox from 'react-images';
 
+const COLUMN_DIVIDER = 4;
+
 const ArtPieceStyle = styled.div`
-  @media(min-width: 1000px) {
-    /* display: grid;
-    grid-template: 1fr / 1fr 2fr; */
-    /* grid-template-columns: 2fr auto;
-    grid-template-rows: 1fr; */
-    .piece-writing {
-      /* display: grid; */
-      /* grid-template-columns: 1fr; */
-      /* grid-template-rows: 1fr 2fr; */
-      /* display: grid; */
-      /* grid-template: 20rem 2fr / 1fr; */
-    }
-
-    .piece-image {
-      /* display: grid; */
-      /* grid-template-columns: 1fr; */
-      /* grid-template-rows: 1fr 2fr; */
-    }
-    
-  }
-  /* display: grid; */
-  /* grid-template-columns: repeat(12, 1fr);
-
-  .piece-writing {
-    grid-column: 1 / 5;
+  .piece-grid {
     display: grid;
-    grid-template-rows: repeat(12, 1fr);
-    .piece-writing-top {
-      grid-row: 1 / 2;
+    grid: 1fr / repeat(12, 1fr);
+
+    .left-side {
+      grid: repeat(8, 2rem) / 1fr;
+      
+      display: grid;
+      grid-column: 1 / ${COLUMN_DIVIDER};
+      .piece-line {
+        grid-row: 1 / 2;
+      }
+
+      .piece-year {
+        grid-row: 2 / 4;
+      }
+
+      .piece-title {
+        grid-row: 4 / 6;
+      }
+
+      .piece-subtitle {
+        grid-row: 6 / 8;
+      }
+
+      .piece-description {
+        grid-row: 8 / 12;
+      }
     }
-    .piece-writing-bottom {
-      grid-row: 2 / -1;
+
+    .right-side {
+      grid: repeat(8, 2rem) / 1fr;
+      display: grid;
+
+      grid-column: ${COLUMN_DIVIDER + 2} / -1;
+      .piece-image {
+        grid-row: 6 / -1;
+      }
     }
   }
 
-  .piece-image {
-    grid-column: 7 / -1;
-  } */
   .piece-image {
     &:hover {
       opacity: 0.8;
@@ -81,15 +87,22 @@ class ArtPiece extends React.Component {
     }));
     return (
       <ArtPieceStyle>
-        <div className="piece-writing">
-          <div className="piece-writing-top">
-            <svg width="100" height="3" xmlns="http://www.w3.org/2000/svg">
-              <line x1="0" y1="0" x2="22" y2="0" stroke="#ebebeb" />
-            </svg>
-            <Year>{year}</Year>
-
-            <ArtPieceHeader title={title}>
-              <h3 className="piece-title" style={{ fontSize: '2.4rem', lineHeight: '1.25' }}>
+        <MediaQuery minWidth={1440}>
+          <div className="piece-grid">
+            <div className="left-side">
+              <svg
+                className="piece-line"
+                width="100"
+                height="3"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <line x1="0" y1="0" x2="22" y2="0" stroke="#ebebeb" />
+              </svg>
+              <Year className="piece-year">{year}</Year>
+              <h3
+                className="piece-title"
+                style={{ fontSize: '2.4rem', lineHeight: '1.25', margin: 0 }}
+              >
                 {title}
               </h3>
               <h4
@@ -97,29 +110,76 @@ class ArtPiece extends React.Component {
                 style={{
                   color: '#a7a7a7',
                   fontWeight: 'normal',
-                  fontSize: '1.4rem'
+                  fontSize: '1.4rem',
+                  margin: 0
                 }}
               >
-                {subtitle}
+                {' '}
+                {subtitle}{' '}
               </h4>
-            </ArtPieceHeader>
+              <div
+                className="piece-description"
+                dangerouslySetInnerHTML={{ __html: description }}
+              />
+            </div>
+            <div className="right-side">
+              <div className="piece-image">
+                <img
+                  style={{
+                    width: '100%',
+                    height: 'auto'
+                  }}
+                  className="piece-image-src"
+                  src={images[0].image.sizes.large}
+                  onClick={() => this.setState({ isOpen: true })}
+                />
+              </div>
+            </div>
           </div>
-          <div className="piece-writing-bottom">
-            <div dangerouslySetInnerHTML={{ __html: description }} />
+        </MediaQuery>
+        <MediaQuery maxWidth={1439}>
+          <div className="piece-writing">
+            <div className="piece-writing-top">
+              <svg width="100" height="3" xmlns="http://www.w3.org/2000/svg">
+                <line x1="0" y1="0" x2="22" y2="0" stroke="#ebebeb" />
+              </svg>
+              <Year>{year}</Year>
+
+              <ArtPieceHeader title={title}>
+                <h3
+                  className="piece-title"
+                  style={{ fontSize: '2.4rem', lineHeight: '1.25' }}
+                >
+                  {title}
+                </h3>
+                <h4
+                  className="piece-subtitle"
+                  style={{
+                    color: '#a7a7a7',
+                    fontWeight: 'normal',
+                    fontSize: '1.4rem'
+                  }}
+                >
+                  {subtitle}
+                </h4>
+              </ArtPieceHeader>
+            </div>
+            <div className="piece-writing-bottom">
+              <div dangerouslySetInnerHTML={{ __html: description }} />
+            </div>
           </div>
-        </div>
-        <div className="piece-image">
-          <div></div> 
-          <img
-            style={{
-              width: '100%',
-              height: 'auto'
-            }}
-            className="piece-image-src"
-            src={images[0].image.sizes.large}
-            onClick={() => this.setState({ isOpen: true })}
-          />
-        </div>
+          <div className="piece-image">
+            <img
+              style={{
+                width: '100%',
+                height: 'auto'
+              }}
+              className="piece-image-src"
+              src={images[0].image.sizes.large}
+              onClick={() => this.setState({ isOpen: true })}
+            />
+          </div>
+        </MediaQuery>
         <Lightbox
           currentImage={photoIdx}
           backdropClosesModal
