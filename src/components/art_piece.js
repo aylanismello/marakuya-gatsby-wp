@@ -8,13 +8,19 @@ const ArtPieceStyle = styled.div`
     display: grid;
     grid-template-columns: 4fr 1fr 6fr;
     grid-template-rows: 1rem 2rem auto 2rem auto;
+    /* grid-template-rows: 1rem auto; */
+
     grid-template-areas:
       "p-line . ."
       "year . ."
       "title . ."
       "subtitle . p-image"
       "description . p-image";
-      
+/*       
+    grid-template-areas:
+      "p-line . ."
+      "description . p-image"; */
+    
     .piece-line {
       grid-area: p-line;
     }
