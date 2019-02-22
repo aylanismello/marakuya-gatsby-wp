@@ -3,12 +3,9 @@ import styled from 'styled-components';
 import NavLinks from './nav_links';
 
 const Wrapper = styled.section`
-  /* padding-top: 4rem;
-  padding-bottom: 4rem; */
   padding: 4rem 1.2rem;
 
   .footer-item {
-    padding: 2rem 0;
   }
 
   @media (min-width: 768px) {
@@ -18,11 +15,9 @@ const Wrapper = styled.section`
     justify-content: space-around;
     align-items: baseline;
   }
-  /* background: #f8f8f8; */
 `;
 
 const FooterNotes = styled.section`
-  /* padding-top: 1.5rem; */
   width: 70%;
   @media (min-width: 768px) {
     padding: 4rem 6em;
@@ -73,7 +68,6 @@ const Footer = ({ pathname }) => (
       pathname={pathname}
       className="footer-item"
     />
-    <Line />
     <FooterNotes className="footer-item">
       <div className="footer-note">
         This online portfolio contains only a small sample of current work.
@@ -82,7 +76,6 @@ const Footer = ({ pathname }) => (
         More are available <a href="mailto: mail@minbark.com">by request.</a>
       </div>
     </FooterNotes>
-    <Line />
     <Copyright className="footer-item">
       © {new Date().getFullYear()} Minbark.com
     </Copyright>

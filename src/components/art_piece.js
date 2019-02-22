@@ -35,6 +35,7 @@ const ArtPieceStyle = styled.div`
 
     .piece-subtitle {
       grid-area: subtitle;
+      align-self: self-end;
     }
 
     .piece-description {

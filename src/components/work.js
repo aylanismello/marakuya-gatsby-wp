@@ -36,7 +36,7 @@ class Work extends React.Component {
     const { listSize } = this.state;
     const hasMorePieces = art_list.length > listSize;
     return (
-      <div>
+      <div className="work">
         {art_list.slice(0, listSize).map(art => (
           <ArtPiece {...art} />
         ))}

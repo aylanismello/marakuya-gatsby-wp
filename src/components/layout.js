@@ -22,10 +22,7 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 const Wrapper = styled.div`
-  /* font-family: "Asap"; */
   padding: 1rem;
-  /* background: #f8f8f8; */
-  /* color: #4a4a4a; */
 
   @media (min-width: 768px) {
     padding: 2rem;
@@ -37,6 +34,8 @@ const Wrapper = styled.div`
 
 const Container = styled.div`
   background: #ffffff;
+
+  /* mobile first */
   padding: 1.2rem;
 
   @media (min-width: 768px) {
@@ -51,6 +50,7 @@ const Content = styled.div`
   font-size: 1.4rem;
   line-height: 2.2rem;
   margin: 0px auto;
+  padding: 2.0rem 0 2.0rem 0;
 
   @media (min-width: 768px) {
     padding: 5.4rem;
@@ -72,7 +72,7 @@ class Layout extends React.Component {
     const { children, location } = this.props;
     const { pathname } = location;
     return (
-      <div className="layout">
+      <div className="outer-layout">
         <Normalize />
         <GlobalStyle />
         {modalOpen ? (
