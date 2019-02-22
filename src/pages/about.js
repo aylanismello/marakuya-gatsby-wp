@@ -10,7 +10,7 @@ class AboutPage extends React.Component {
 
     return (
       <Layout location={location}>
-        <ArtPiece {...aboutData} />
+        <ArtPiece {...aboutData} isAbout />
       </Layout>
     );
   }

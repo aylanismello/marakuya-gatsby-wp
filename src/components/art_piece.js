@@ -7,8 +7,7 @@ const ArtPieceStyle = styled.div`
   .piece-grid {
     display: grid;
     grid-template-columns: 4fr 1fr 6fr;
-    grid-template-rows: 1rem 2rem auto 2rem auto;
-    /* grid-template-rows: 1rem auto; */
+    grid-template-rows: ${props => (props.isAbout ? `1rem auto` : `1rem 2rem auto 2rem auto`)};
 
     grid-template-areas:
       "p-line . ."
@@ -16,11 +15,7 @@ const ArtPieceStyle = styled.div`
       "title . ."
       "subtitle . p-image"
       "description . p-image";
-/*       
-    grid-template-areas:
-      "p-line . ."
-      "description . p-image"; */
-    
+
     .piece-line {
       grid-area: p-line;
     }
@@ -40,6 +35,9 @@ const ArtPieceStyle = styled.div`
 
     .piece-description {
       grid-area: description;
+      p:first-of-type {
+        margin-top: ${props => (props.isAbout ? '0' : '')};
+      }
     }
 
     .piece-image {
@@ -78,7 +76,7 @@ class ArtPiece extends React.Component {
 
   render() {
     const { isOpen, photoIdx } = this.state;
-    const { year, title, subtitle, description, images } = this.props;
+    const { year, title, subtitle, description, images, isAbout } = this.props;
 
     const lightboxImages = images.map(image => ({
       src: image.image.sizes.large,
@@ -86,7 +84,7 @@ class ArtPiece extends React.Component {
       thumbnail: image.image.sizes.thumbnail
     }));
     return (
-      <ArtPieceStyle>
+      <ArtPieceStyle isAbout={isAbout}>
         <MediaQuery minWidth={1440}>
           <div className="piece-grid">
             {/* <div className="left-side"> */}
