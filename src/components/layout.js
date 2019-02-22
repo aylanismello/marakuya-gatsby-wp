@@ -59,7 +59,7 @@ const Content = styled.div`
 
   @media (min-width: 1440px) {
     max-width: 1050px;
-    padding: 10rem 15rem 10rem 15rem;
+    padding: 10rem 15rem 5rem 15rem;
   }
 `;
 class Layout extends React.Component {

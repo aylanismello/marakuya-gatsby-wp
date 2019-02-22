@@ -6,15 +6,14 @@ const PAGINATION_SIZE = 3;
 
 const LoadButton = styled.div`
   display: ${props => (props.hasMorePieces ? 'flex' : 'none')};
-  padding: 1rem;
+  /* padding-bottom: 1rem; */
   justify-content: center;
   font-size: 2rem;
   line-height: 1.1;
-  
-  
+
   .text-container {
     border-bottom: 1px solid;
-    width: 10rem;  
+    width: 10rem;
     &:hover {
       cursor: pointer;
     }
@@ -26,6 +25,19 @@ const LoadButton = styled.div`
   }
 `;
 
+const WorkItem = styled.div`
+  padding-bottom: 4rem;
+
+  @media (min-width: 768px) {
+    padding-bottom: 5rem;
+  }
+  @media (min-width: 1440px) {
+    padding-bottom: 7rem;
+  }
+`;
+
+const Wrapper = styled.div``;
+
 class Work extends React.Component {
   state = {
     listSize: PAGINATION_SIZE
@@ -36,10 +48,13 @@ class Work extends React.Component {
     const { listSize } = this.state;
     const hasMorePieces = art_list.length > listSize;
     return (
-      <div className="work">
+      <Wrapper>
         {art_list.slice(0, listSize).map(art => (
-          <ArtPiece {...art} />
+          <WorkItem>
+            <ArtPiece {...art} />
+          </WorkItem>
         ))}
+
         <LoadButton
           hasMorePieces={hasMorePieces}
           onClick={() => this.setState({ listSize: listSize + PAGINATION_SIZE })
@@ -49,7 +64,7 @@ class Work extends React.Component {
             <p>Load More</p>
           </div>
         </LoadButton>
-      </div>
+      </Wrapper>
     );
   }
 }
