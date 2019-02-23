@@ -7,7 +7,9 @@ const ArtPieceStyle = styled.div`
   .piece-grid {
     display: grid;
     grid-template-columns: 4fr 1fr 6fr;
-    grid-template-rows: ${props => (props.isAbout ? `1rem auto` : `1rem 2rem auto 2rem auto`)};
+    /* grid-template-rows: 1rem auto auto 3rem auto; */
+    /* grid-template-rows: ${props => (props.isAbout ? `1rem auto` : `1rem 2rem auto 2rem auto`)}; */
+    grid-template-rows: ${props => (props.isAbout ? `1rem auto` : `1rem auto auto 3rem auto;`)};
 
     grid-template-areas:
       "p-line . ."
@@ -99,7 +101,7 @@ class ArtPiece extends React.Component {
             <Year className="piece-year">{year}</Year>
             <h3
               className="piece-title"
-              style={{ fontSize: '2.4rem', lineHeight: '1.25', margin: 0 }}
+              style={{ fontSize: '2.4rem', lineHeight: '1.25', margin: 0, padding: '1rem 0 1rem 0' }}
             >
               {title}
             </h3>
@@ -109,9 +111,10 @@ class ArtPiece extends React.Component {
                 color: '#a7a7a7',
                 fontWeight: 'normal',
                 fontSize: '1.4rem',
-                margin: 0
-              }}
-            >
+                margin: 0,
+                alignSelf: 'center'
+          }}
+        >
               {' '}
               {subtitle}{' '}
             </h4>
