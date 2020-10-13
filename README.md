@@ -8,6 +8,19 @@
   Gatsby's default starter
 </h1>
 
+
+THE API:
+http://admin.min-bark.com/wp-json/wp/v2/pages
+
+TEST QUERY:
+
+http://localhost:8000/___graphql?query=query%20MyQuery%20%7B%0A%20%20%20%20%20allWordpressPage(filter%3A%20%7B%20slug%3A%20%7B%20eq%3A%20%22sample-page%22%20%7D%20%7D)%20%7B%0A%20%20%20%20%20%20edges%20%7B%0A%20%20%20%20%20%20%20%20node%20%7B%0A%20%20%20%20%20%20%20%20%20%20id%0A%20%20%20%20%20%20%20%20%20%20slug%0A%20%20%20%20%20%20%20%20%20%20template%0A%20%20%20%20%20%20%20%20%20%20title%0A%20%20%20%20%20%20%20%20%20%20acf%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20art_list%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20year%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20title%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20subtitle%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20description%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20image%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20image%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20width%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20height%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20url%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20caption%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20title%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20sizes%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20thumbnail%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20medium%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20large%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20description%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%7D%0A%7D%0A&operationName=MyQuery
+
+
+###NOTE: 
+## YOU HAVE HAVE EACH ITEM IN THE ACF FIELD ART_LIST HAVE AN IMAGE OR ELSE GATSBY SOURCE BREAKS.
+
+
 Kick off your project with this default boilerplate. This starter ships with the main Gatsby configuration files you might need to get up and running blazing fast with the blazing fast app generator for React.
 
 _Have another more specific idea? You may want to check out our vibrant collection of [official and community-created starters](https://www.gatsbyjs.org/docs/gatsby-starters/)._
